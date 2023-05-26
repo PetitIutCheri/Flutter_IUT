@@ -4,7 +4,7 @@ void main() => runApp(
       MyApp(),
     );
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   MyApp({
     Key? key,
   }) : super(key: key);
@@ -72,12 +72,6 @@ class MyApp extends StatefulWidget {
       ),
     );
   }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
 }
 
 class Pokemon {
@@ -86,7 +80,7 @@ class Pokemon {
   Pokemon({required this.icon, required this.name});
 }
 
-class TheAmazingRow extends StatefulWidget {
+class TheAmazingRow extends StatelessWidget {
   const TheAmazingRow({Key? key, required this.icon, required this.label})
       : super(key: key);
 // la c'est entre le constructeur
@@ -120,11 +114,5 @@ class TheAmazingRow extends StatefulWidget {
             ],
           )),
     );
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
   }
 }
