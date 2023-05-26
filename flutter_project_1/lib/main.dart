@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(
-      MyApp(),
+      const MyApp(),
     );
 
-class MyApp extends StatelessWidget {
-  MyApp({
+class MyApp extends StatefulWidget {
+  const MyApp({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final TextEditingController controller;
+  @override
+  void initState() {
+    controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   final pokedex = <Pokemon>[
     // <== liste finale, contenu constant
@@ -42,26 +60,27 @@ class MyApp extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Expanded(
-                      child: const TextField(
-                        decoration: InputDecoration(
+                      child: TextField(
+                        controller: controller,
+                        decoration: const InputDecoration(
                           labelText: 'Ecrivez un nom',
                         ),
                       ),
                     ),
                     Flexible(
                       child: IconButton(
-                        icon: const Icon(Icons.delete),
-                        onPressed: () => print('Hallo Welt'),
-                      ),
+                          icon: const Icon(Icons.add),
+                          onPressed: () {
+                            pokedex.insert(
+                                0,
+                                Pokemon(
+                                    icon: Icons.emoji_emotions,
+                                    name: "Aboubacar"));
+                            setState(() {});
+                          }),
                     )
                   ],
                 ),
-                for (final Pokemon item in pokedex)
-                  TheAmazingRow(
-                      icon: item.icon, label: item.name.toUpperCase()),
-                for (final Pokemon item in pokedex)
-                  TheAmazingRow(
-                      icon: item.icon, label: item.name.toUpperCase()),
                 for (final Pokemon item in pokedex)
                   TheAmazingRow(
                       icon: item.icon, label: item.name.toUpperCase()),
